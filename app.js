@@ -3,11 +3,13 @@ var app = angular.module('OpenDisc', []);
 app.controller('MainCtrl', [
 
     '$scope',
-    function($scope)
+    'posts',
+    function($scope, posts)
     {
         $scope.test = 'Hello world!';
 
 
+        /*
         $scope.posts = [
             {title: 'post 1', upvotes: 5},
             {title: 'post 2', upvotes: 2},
@@ -15,6 +17,9 @@ app.controller('MainCtrl', [
             {title: 'post 4', upvotes: 9},
             {title: 'post 5', upvotes: 4}
         ];
+        */
+
+        $scope.posts = posts.posts;
 
         $scope.addPost = function()
         {
@@ -38,3 +43,14 @@ app.controller('MainCtrl', [
     }
 
 ]);
+
+
+app.factory('posts', [function() {
+
+    var o = {
+        posts: []
+    };
+
+    return o;
+
+}]);
