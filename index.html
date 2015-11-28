@@ -7,39 +7,11 @@
     <script src="app.js"></script>
     <style> .glyphicon-thumbs-up { cursor:pointer } </style>
 </head>
-<body ng-app="OpenDisc">
+<body ng-app="OpenDisc" ng-contorller="MainCtrl">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-                <ui-view></ui-view>
-            <div ng-repeat="post in posts | orderBy: '-upvotes'">
-            <span class="glyphicon glyphicon-thumbs-up"
-                ng-click="incrementUpvotes(post)"></span>
-                {{post.upvotes}}
-            <span style="font-size:20px; margin-left:10px;">
-                <a ng-show="post.link" href="{{post.link}}">
-                    {{post.title}}
-                </a>
-                <span ng-hide="post.link">
-                    {{post.title}}
-                </span>
-            </span>
-            <span>
-                <a href="#/posts/{{$index}}">Comments</a>
-            </span>
-            </div>
+            <ui-view></ui-view>
 
-            <form ng-submit="addPost()" style="margin-top: 30px;">
-                <h3>Add a new post</h3>
-
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Title" ng-model="title"></input>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Link" ng-model="link"></input>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Post</button>
-            </form>
         </div>
     </div>
 
@@ -48,6 +20,33 @@
             <h1>OpenDisc</h1>
             <h2>Welcome</h2>
         </div>
+
+        <div ng-repeat="post in posts | orderBy: '-upvotes'">
+            <span class="glyphicon glyphicon-thumbs-up"
+                ng-click="incrementUpvotes(post)"></span>
+                {{post.upvotes}}
+                <span style="font-size:20px; margin-left:10px;">
+                    <a ng-show="post.link" href="{{post.link}}">
+                        {{post.title}}
+                    </a>
+                <span ng-hide="post.link">
+                    {{post.title}}
+                </span>
+            </span>
+        </div>
+
+        <form ng-submit="addPost()" style="margin-top: 30px;">
+            <h3>Add a new post</h3>
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Title" ng-model="title"></input>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Link" ng-model="link"></input>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Post</button>
+        </form>
     </script>
 
     <script type="text/ng-template" id="/posts.html">
@@ -69,6 +68,6 @@
                 {{comment.body}}
             </span>
         </div>
-
+    </script>
 </body>
 </html>
