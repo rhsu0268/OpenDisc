@@ -1,6 +1,11 @@
 var express = require('express');
+var jwt = require('express-jwt');
 var router = express.Router();
-var passport = require('passport');
+var auth = jwt({
+
+    secret: 'SECRET', userProperty: 'payload'
+});
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,6 +14,7 @@ router.get('/', function(req, res, next) {
 
 
 var mongoose = require('mongoose');
+var passport = require('passport');
 
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
